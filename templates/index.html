@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+
+<body>
+    <h1>密碼產生器</h1>
+    <form action="{% url 'passwd' %}" method="get">
+        <label for="length:">密碼長度:</label>
+        <select name="length" id="id-length">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8" selected>8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <label for="">自定義長度</label>
+        <input type="number" name="input_length" id="input_length" />
+        <br>
+        <input type="checkbox" name="uppercase" id="uppercase" />大寫
+        <input type="checkbox" name="number" id="number" />數字
+        <input type="checkbox" name="special" id="special" />符號
+        <br>
+        <button type="submit">產生</button>
+    </form>
+</body>
+</html>

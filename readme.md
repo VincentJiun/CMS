@@ -2,6 +2,10 @@
 
 ## Settings
 
+### 建立超級使用者
+- python manage.py createsuperuser
+- username: admin password:Egg790508
+
 ### 設定 Template & Static
 - Template:
 ```
@@ -75,7 +79,10 @@ DATABASES = {
 }
 ```
 
-
 ### i18n (國際化)
 
 ### CMS (App)
+
+## 密碼產生器 (APP)
+
+## 帳號管理 (APP): account
