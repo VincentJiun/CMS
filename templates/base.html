@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}首頁{% endblock %}</title>
+</head>
+<body>
+    <!-- 檢查是否登入狀態 -->
+    {% if user.is_authenticated %}
+        Login:<a href="{% url 'profile' %}">{{user.username}}</a> 
+        &nbsp;
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> &nbsp;
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

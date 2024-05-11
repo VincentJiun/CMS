@@ -86,3 +86,26 @@ DATABASES = {
 ## 密碼產生器 (APP)
 
 ## 帳號管理 (APP): account
+
+### 建立註冊頁面的方法
+1. 傳統方法
+2. 使用Django 內建 UserCreationForm
+    - 不需要再次製作 html頁面
+    - 實作功能已包含(檢查重複、登入、登出...)
+
+### 新增使用者至MySQL
+- 使用內建 User類別
+    - 簡化建立 model 跟 儲存問題
+
+- views.py
+```
+from django.contrib.auth.models import User
+```
+- def register
+```
+User.objects.create_user(username=username, password=password1).save()
+```
+
+- 註冊成功後，直接轉向登入頁面
+
+### 登入功能製作

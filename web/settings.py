@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'generator',
     'account',
+    'todo',
 ]
 
 MIDDLEWARE = [
