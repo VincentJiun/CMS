@@ -4,4 +4,26 @@
 
 {% block content %}
     <h1>Todo</h1>
+    <ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{% url 'view_todo' todo.id %}">
+            {% if todo.completed %}
+                {{todo.title}} - 已完成
+                {% if todo.important %}
+                (重要)
+                {% endif %}
+            {% else %}
+                {{todo.title}} - 未完成
+                {% if todo.important %}
+                (重要)
+                {% endif %}
+            {% endif %}
+        </a>
+        <a href="{% url 'delete' todo.id %}">刪除</a>
+        <a href="">完成</a>
+    </li>
+        
+    {% endfor %}
+    </ul>
 {% endblock %}

@@ -6,11 +6,17 @@
     <title>{% block title %}首頁{% endblock %}</title>
 </head>
 <body>
+    <a href="{% url 'todo' %}">首頁</a>
+    &nbsp;
     <!-- 檢查是否登入狀態 -->
     {% if user.is_authenticated %}
         Login:<a href="{% url 'profile' %}">{{user.username}}</a> 
         &nbsp;
         <a href="{% url 'logout' %}">Logout</a>
+        &nbsp;
+        <a href="{% url 'create_todo' %}">Create</a>
+        &nbsp;
+        <a href="{% url 'complete' %}">Completed</a>
     {% else %}
         <a href="{% url 'login' %}">Login</a> &nbsp;
         <a href="{% url 'register' %}">Register</a>

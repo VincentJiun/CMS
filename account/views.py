@@ -1,15 +1,20 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.forms import UserCreationForm # Django 內建UserCreationForm 表單
+# from django.contrib.auth.forms import UserCreationForm # Django 內建UserCreationForm 表單
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+
+from .forms import CustomForm
 # Create your views here.
 
+@login_required
 def user_profile(request):
-    return render(request, 'account/profile.html')
+    user = request.user
+    return render(request, 'account/profile.html', {'user': user})
 
 def user_register(request):
-    form = UserCreationForm()
+    form = CustomForm()
     msg = ''
     if request.method == 'POST':
         
@@ -17,6 +22,7 @@ def user_register(request):
         username = request.POST.get('username')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+        email = request.POST.get('email')
 
         # 密碼檢查
         if password1 != password2:
@@ -28,7 +34,7 @@ def user_register(request):
         elif User.objects.filter(username=username).exists():
             msg = '帳號已存在!!!'
         else:
-            user = User.objects.create_user(username=username, password=password1)
+            user = User.objects.create_user(username=username, password=password1, email=email)
             if user is not None:
                 user.save()
                 msg = '註冊成功'
@@ -60,6 +66,7 @@ def user_login(request):
 
     return render(request, 'account/login.html', {'msg': msg})
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('login')

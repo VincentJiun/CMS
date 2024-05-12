@@ -108,4 +108,52 @@ User.objects.create_user(username=username, password=password1).save()
 
 - 註冊成功後，直接轉向登入頁面
 
-### 登入功能製作
+### 登入/出功能製作
+- views.py -> user_login/user_logout
+
+## Todo 功能
+- model 新增欄位或修改時都需要 makemigrations
+- 註冊資料表至後臺: admin.py
+
+### (Foreignkey)一對一關聯
+- 範例: Todo models.py
+- User <--> Todo
+- 引用外部 models: User
+```
+user = models.ForeignKey(User, on_delete=models.CASCADE)
+```
+- on_delete=models.CASCADE: 當User 被刪除時，Todo model內容也會被刪除
+
+### 顯示特定使用者資訊
+- views.py: 使用 filter
+```
+todos = Todo.objects.filter(user=request.user)
+```
+
+### 顯示單一資料表資訊
+- views.py: viewlist
+
+### 建立資料表內容
+- forms.py (新增檔案)
+```
+class TodoForm(ModelForm):
+    class Meta:
+        model = Todo
+        fields = ['title', 'text', 'important']
+        # fields = '__all__' # 全部欄位
+```
+- views.py: create_todo
+
+### 更新資料表
+- views.py
+
+### 刪除
+
+### 使用 login_required 修飾字
+- @login_required: 登入後才能操作
+
+- settings.py: 設定使用者若未登入，導回 登入頁面
+```
+LOGIN_URL = 'login'
+```
+

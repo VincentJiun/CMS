@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}View{% endblock %}
+
+
+
+{% block content %}
+    <h1>View</h1>
+    <h2>{{todo.title}}</h2>    
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="修改" name="update">
+        <input type="submit" value="刪除" name="delete">
+
+    </form>
+    {{msg}}
+
+    <ul>
+        <li>作者: {{todo.user}}</li>
+        <li>發佈日期: {{date}}</li>
+        
+        {% if todo.completed %}
+        <li>完成時間: {{todo.date_completed}}</li>
+        {% endif %}
+    </ul>
+{% endblock %}
