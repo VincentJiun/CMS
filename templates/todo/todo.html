@@ -21,7 +21,7 @@
             {% endif %}
         </a>
         <a href="{% url 'delete' todo.id %}">刪除</a>
-        <a href="">完成</a>
+        <a href="{% url 'completed_by_id' todo.id %}">完成</a>
     </li>
         
     {% endfor %}
